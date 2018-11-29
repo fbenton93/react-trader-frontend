@@ -1,0 +1,23 @@
+#nav-menu {
+  text-decoration: none;
+  font-size: 1.2em;
+  list-style-type: none;
+}
+
+#nav-menu li {
+  transition: transform .5s;
+}
+
+#nav-menu li:hover {
+  text-shadow: 0 0 5px white;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+a:hover {
+  color: white;
+}
+
+a {
+  color: white;
+}

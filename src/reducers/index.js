@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import DummyDataReducer from './DummyData';
 import AuthorizedReducer from './Authorized';
+import CurrentUserReducer from './CurrentUser';
 
 const reducers = combineReducers({
-  dummyData: DummyDataReducer,
-  authorized: AuthorizedReducer
+  authorized: AuthorizedReducer,
+  currentUser: CurrentUserReducer
 })
 
 export default reducers;

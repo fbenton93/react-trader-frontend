@@ -5,6 +5,20 @@
   position: relative;
 }
 
+#summary img {
+  width: 90%;
+  height: auto;
+  margin: 2% 5%;
+}
+
+#summary p {
+  margin: 2% 2% 2% 4%;
+}
+
+#summary h2 {
+  margin: 3% 4%;
+}
+
 #login-panel {
   top: 30%;
   left: 50%;
