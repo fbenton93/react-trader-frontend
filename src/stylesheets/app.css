@@ -1,0 +1,41 @@
+html {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#app-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+#navbar {
+  display: block;
+  width: 20%;
+  padding: 2% 1%;
+  border-right: 5px solid rgba(0,0,0,0.6);
+  background-color: black;
+  color: white;
+}
+
+.page {
+  display: block;
+  width: 80%;
+  padding: 2%;
+}
