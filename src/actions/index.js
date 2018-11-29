@@ -10,3 +10,8 @@ export function logOut() {
   // removes jwt and redirects to the login page, removes currentUser
   return { type: 'LOG_OUT' }
 }
+
+export function fetchCurrentUser() {
+  // makes call to api and sets currentUser, authorizes
+  console.log('attempting to fetch current user')
+}

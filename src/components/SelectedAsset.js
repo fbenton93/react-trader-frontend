@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-class SelectedStock extends Component {
-  // state = { stock: {} }
-  //
+class SelectedAsset extends Component {
+  state = { asset: {} }
+
   // renderMessage(message) {
   //   this.setState({ stock: message })
   // }
@@ -22,15 +22,7 @@ class SelectedStock extends Component {
   //   socket.on('disconnect', () => alert('disconnected'))
   // }
 
-
-
   render() {
-    return (
-      <div id="page-selected-stock" className="page">
-      At the Stock Page
-      </div>
-    )
+
   }
 }
-
-export default SelectedStock;

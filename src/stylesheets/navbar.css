@@ -14,10 +14,10 @@
   cursor: pointer;
 }
 
-a:hover {
+li a:hover {
   color: white;
 }
 
-a {
+li a {
   color: white;
 }

@@ -4,7 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Portfolio from './pages/Portfolio';
-import SelectedStock from './pages/SelectedStock';
+import TradingDesk from './pages/TradingDesk';
 import ErrorPage from './pages/ErrorPage';
 
 import './stylesheets/app.css'
@@ -18,7 +18,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Portfolio} />
           <Route path="/login" component={Login} />
-          <Route path="/trading-desk" component={SelectedStock} />
+          <Route path="/trading-desk" component={TradingDesk} />
           <Route component={ErrorPage} />
         </Switch>
       </div>

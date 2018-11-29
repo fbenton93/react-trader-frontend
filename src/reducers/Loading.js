@@ -1,8 +1,8 @@
 export default function(state = false,action) {
   switch(action.type) {
-    case 'LOG_IN':
+    case 'LOADING':
       return true;
-    case 'LOG_OUT':
+    case 'LOADING_DONE':
       return false;
     default:
       return state;

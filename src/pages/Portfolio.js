@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import reqAuth from '../HOCs/reqAuth';
 
 class Portfolio extends Component {
   render() {
@@ -10,4 +11,4 @@ class Portfolio extends Component {
   }
 }
 
-export default Portfolio;
+export default reqAuth(Portfolio);
