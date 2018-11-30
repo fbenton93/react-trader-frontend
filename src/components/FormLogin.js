@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Button, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { logIn } from '../actions';
 
@@ -23,7 +24,7 @@ class FormLogin extends Component {
         { username: this.state.username,
           password: this.state.password
         },
-        () => this.props.history.push('/')
+        () => this.props.history.push('/portfolio')
       );
     } else {
       this.props.triggerFormSwitch();
@@ -32,7 +33,8 @@ class FormLogin extends Component {
 
   render() {
     const error = this.props.error === '401' ? 'Invalid Credentials' : null
-    return (
+    return this.props.authorized ? (<Redirect to="/portfolio" />) :
+    (
       <div id="login-form">
         <form>
           <div className="flex-wrapper">
@@ -67,7 +69,8 @@ class FormLogin extends Component {
 
 function mapStateToProps(state) {
   return {
-    error: state.errors.error
+    error: state.errors.error,
+    authorized: state.authorized
   }
 }
 
