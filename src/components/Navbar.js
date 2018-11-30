@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { logIn, logOut } from '../actions';
 
-import { Divider } from 'semantic-ui-react'
+import { Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import Summary from './Summary';
 import '../stylesheets/navbar.css';
+import logo from '../images/logo.png';
 
 
 
@@ -32,12 +33,14 @@ const Navbar = (props) => {
           </li>
           <Divider />
         </ul>
+        <img id="logo" src={logo} alt="logo" />
       </div>
     )
   } else {
     return (
       <div id="navbar">
         <Summary />
+        <img id="logo" src={logo} alt="logo" />
       </div>
     )
   }

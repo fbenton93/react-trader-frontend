@@ -14,7 +14,7 @@ const Summary = () => {
         socket.io </a> websocket and basic AJAX requests. Executed trades are saved to a backend Rails API.
       </p>
       <p>
-        Currently, this application is not designed to handled more sophisticated trades
+        Currently, this application is not designed to handle more sophisticated trades
         like short-selling. It is a simple buy/sell for stocks available on the IEX API.
       </p>
       <br />

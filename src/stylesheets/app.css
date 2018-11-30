@@ -27,6 +27,7 @@ body {
 
 #navbar {
   display: block;
+  position: relative;
   width: 20%;
   padding: 2% 1%;
   border-right: 5px solid rgba(0,0,0,0.6);

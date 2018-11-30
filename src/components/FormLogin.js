@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Input, Button, Divider } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+
+import { logIn } from '../actions';
 
 class FormLogin extends Component {
   state = {
-    username: '',
-    password: ''
+    username: 'fbenton',
+    password: 'password'
   }
 
   handleChange = (event) => {
@@ -16,15 +19,19 @@ class FormLogin extends Component {
   handleClick = (e,type) => {
     e.preventDefault();
     if(type === 'login') {
-      // dispatch an authorized true to trigger a loading screen via reqAuth
-      // run action for fetching user
-      // push home to history in props
+      this.props.logIn(
+        { username: this.state.username,
+          password: this.state.password
+        },
+        () => this.props.history.push('/')
+      );
     } else {
       this.props.triggerFormSwitch();
     }
   }
 
   render() {
+    const error = this.props.error === '401' ? 'Invalid Credentials' : null
     return (
       <div id="login-form">
         <form>
@@ -36,8 +43,9 @@ class FormLogin extends Component {
                 </div>
                 <div>
                   <label>Password:</label>
-                  <Input name="password" type="password" value={this.state.passsword} onChange={this.handleChange} />
+                  <Input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
                 </div>
+                <p style={{color: 'red'}}>{error}</p>
             </div>
             <div id="actions">
               <div>
@@ -57,4 +65,10 @@ class FormLogin extends Component {
   }
 }
 
-export default FormLogin;
+function mapStateToProps(state) {
+  return {
+    error: state.errors.error
+  }
+}
+
+export default connect(mapStateToProps,{logIn})(FormLogin);

@@ -21,3 +21,11 @@ li a:hover {
 li a {
   color: white;
 }
+
+#logo {
+  width: 90%;
+  height: auto;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
