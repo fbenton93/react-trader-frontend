@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import reqAuth from '../HOCs/reqAuth';
+import AssetsTable from '../components/AssetsTable';
 
 import '../stylesheets/portfolio.css';
 import { Segment } from 'semantic-ui-react';
+
 
 
 class Portfolio extends Component {
@@ -23,6 +25,7 @@ class Portfolio extends Component {
       </div>
 
       <div id="holdings">
+        <AssetsTable />
       </div>
     </div>
   )
