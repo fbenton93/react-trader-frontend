@@ -1,0 +1,19 @@
+#page-portfolio {
+  padding: 0;
+}
+
+#profile {
+  height: 30%;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/NYSE.png');
+  background-size: cover;
+  background-position: center top;
+  position: relative;
+}
+
+.horizontal.segments {
+  position: absolute;
+  bottom: -15%;
+}
