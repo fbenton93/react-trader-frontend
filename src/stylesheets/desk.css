@@ -45,3 +45,7 @@
   color: rgba(6,69,173,1);
   list-style-type: square;
 }
+
+tr:hover {
+  cursor: pointer;
+}

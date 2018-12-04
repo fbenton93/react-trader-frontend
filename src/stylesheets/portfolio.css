@@ -21,3 +21,9 @@
 #assets {
   margin: 5%;
 }
+
+#holdings .segment {
+  margin: 5% 10%;
+  width: 80%;
+  text-align: center;
+}

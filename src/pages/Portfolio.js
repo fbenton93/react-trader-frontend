@@ -25,6 +25,7 @@ class Portfolio extends Component {
       </div>
 
       <div id="holdings">
+        <Segment color="yellow"><h4>Select a Transaction for Analysis and Sale Options</h4></Segment>
         <AssetsTable />
       </div>
     </div>
