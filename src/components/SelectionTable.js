@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 
+import { connect } from 'react-redux';
 import tickerSwitchboard from '../helpers/tickerSwitchboard';
+import { fetchSelectedAsset } from '../actions';
 import SearchBar from './SearchBar';
 
 class SelectionTable extends Component {
@@ -28,8 +30,7 @@ class SelectionTable extends Component {
   }
 
   handleClick = (event) => {
-    console.log(event.target.id)
-    this.props.openModal();
+    this.props.fetchSelectedAsset(event.target.id)
   }
 
   render() {
@@ -46,7 +47,7 @@ class SelectionTable extends Component {
           </Table.Header>
           <Table.Body onClick={this.handleClick}>
             <div className="scrolling">
-            {this.renderRows()}
+              {this.renderRows()}
             </div>
           </Table.Body>
         </Table>
@@ -56,4 +57,5 @@ class SelectionTable extends Component {
   }
 }
 
-export default SelectionTable;
+
+export default connect(null,{ fetchSelectedAsset })(SelectionTable);

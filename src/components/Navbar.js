@@ -5,7 +5,7 @@ import { logIn, logOut } from '../actions';
 import { Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import Summary from './Summary';
+import AppSummary from './AppSummary';
 import '../stylesheets/navbar.css';
 import logo from '../images/logo.png';
 
@@ -39,7 +39,7 @@ const Navbar = (props) => {
   } else {
     return (
       <div id="navbar">
-        <Summary />
+        <AppSummary />
         <img id="logo" src={logo} alt="logo" />
       </div>
     )

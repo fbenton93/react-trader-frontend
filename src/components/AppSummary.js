@@ -1,7 +1,7 @@
 import React from 'react';
 import forrest from '../images/forrest.png'
 
-const Summary = () => {
+const AppSummary = () => {
   return (
     <div id="summary">
       <h2>Welcome</h2>
@@ -27,4 +27,4 @@ const Summary = () => {
   )
 }
 
-export default Summary;
+export default AppSummary;

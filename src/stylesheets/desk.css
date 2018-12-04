@@ -46,6 +46,32 @@
   list-style-type: square;
 }
 
+tr {
+  width: inherit;
+}
+
+td {
+  width: inherit;
+}
+
 tr:hover {
   cursor: pointer;
+}
+
+
+/* MODAL */
+
+.card div {
+  margin: 20px;
+}
+
+#summary-card {
+  height: 100%;
+  width: 30%;
+  margin-right: 5%;
+}
+
+#transaction-card {
+  height: 100%;
+  width: 65%;
 }

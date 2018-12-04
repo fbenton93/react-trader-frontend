@@ -20,13 +20,12 @@ class SelectionPane extends Component {
   }
 
   render() {
-    const { openModal } = this.props;
     return (
       <div className="flex-container">
         <ul id="alpha-filter" onClick={this.filterAlpha}>
           {this.renderFilter()}
         </ul>
-        <SelectionTable letter={this.state.letterFilter} openModal={openModal} />
+        <SelectionTable letter={this.state.letterFilter} />
       </div>
     )
 

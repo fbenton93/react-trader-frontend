@@ -40,7 +40,21 @@ export function fetchCurrentUser() {
 
 export function fetchSelectedAsset(sym) {
   return dispatch => {
+    dispatch({ type: 'LOADING' })
     return iex.get(`/stock/${sym}/company`)
-    .then(response => console.log(response))
+    .then(response => {
+      dispatch({ type: 'ASSET_SELECTED', payload: response.data })
+    })
+    .then(() => {
+      return iex.get(`/stock/${sym}/delayed-quote`)
+      .then(response => {
+        dispatch({ type: 'ADD_QUOTE', payload: response.data })
+        dispatch({ type: 'LOADING_DONE' })
+      })
+    })
   }
+}
+
+export function modalClose() {
+  return { type: 'MODAL_CLOSE' }
 }

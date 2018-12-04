@@ -18,14 +18,11 @@ const reqAuth = (ChildComponent) => {
     }
 
     render() {
-      console.log('in the HOC')
       if(this.props.currentUser.user && this.props.authorized && !this.props.loading) {
-        console.log('login successful')
         return <ChildComponent />
       } else if(this.props.loading) {
-        return <LoadingPage msg={"Loading Your Profile"} />
+        return <LoadingPage msg={"Fetching Data"} />
       } else {
-        console.log('rejected')
         return <Redirect to="/login" />
       }
       // console.log('were in the wrapper')
