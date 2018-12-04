@@ -1,0 +1,47 @@
+.flex-container {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  border: 1px solid red;
+}
+
+#selection-table {
+  width: 80%;
+  margin: 0 5%;
+  position: relative;
+}
+
+#selection-table #search-bar {
+  position: absolute;
+  top: 3.5%;
+  right: 2%;
+}
+
+#search-bar input {
+  width: 100%;
+}
+
+.scrolling {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-width: 100%;
+  max-height: 450px;
+}
+
+#alpha-filter {
+  width: 5%;
+  margin: 0 5% 0 0;
+}
+
+
+#alpha-filter li {
+  color: rgba(6,69,173,0.6);
+  list-style-type: circle;
+  text-decoration: underline;
+}
+
+#alpha-filter li:hover {
+  cursor: pointer;
+  color: rgba(6,69,173,1);
+  list-style-type: square;
+}

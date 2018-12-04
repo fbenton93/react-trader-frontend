@@ -8,15 +8,15 @@ class AssetsTable extends Component {
 
   renderRows = () => {
 
-    
+
     return (
-      <Table.Row>
+      <Table.Row negative>
         <Table.Cell>FB</Table.Cell>
         <Table.Cell>Facebook</Table.Cell>
         <Table.Cell>200</Table.Cell>
         <Table.Cell>$240</Table.Cell>
-        <Table.Cell>$4700</Table.Cell>
-        <Table.Cell>+4%</Table.Cell>
+        <Table.Cell>$47,000</Table.Cell>
+        <Table.Cell>-0.97%</Table.Cell>
         <Table.Cell>04-11-2018</Table.Cell>
       </Table.Row>
     )
