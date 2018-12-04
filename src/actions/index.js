@@ -1,5 +1,6 @@
 import backend from '../api/backend';
 import authorizedRequest from '../api/authorizedRequest';
+import iex from '../api/iex';
 
 export function logIn(creds,historyCallback) {
   return dispatch => {
@@ -34,5 +35,12 @@ export function fetchCurrentUser() {
     .catch(r => {
       dispatch({ type: `${r.response.status}`})
     })
+  }
+}
+
+export function fetchSelectedAsset(sym) {
+  return dispatch => {
+    return iex.get(`/stock/${sym}/company`)
+    .then(response => console.log(response))
   }
 }

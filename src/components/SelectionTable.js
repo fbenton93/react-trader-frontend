@@ -29,6 +29,7 @@ class SelectionTable extends Component {
 
   handleClick = (event) => {
     console.log(event.target.id)
+    this.props.openModal();
   }
 
   render() {
