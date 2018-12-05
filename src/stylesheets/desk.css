@@ -70,6 +70,10 @@ tr:hover {
 
 /* MODAL */
 
+.modal {
+  min-height: 95vh;
+}
+
 .card div {
   margin: 20px;
 }
@@ -78,6 +82,11 @@ tr:hover {
   height: 100%;
   width: 30%;
   margin-right: 1%;
+}
+
+#chart-container {
+  width: 70%;
+  height: 100%;
 }
 
 #transaction-card {
