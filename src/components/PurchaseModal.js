@@ -14,14 +14,19 @@ class PurchaseModal extends Component {
     return (
       <Modal open={this.props.modalOpen} size="large" >
         <Modal.Header>
-          <h3>{selectedAsset.companyName}</h3>
+          <h3>
+            {selectedAsset.companyName}
+            <a target="_blank" href={selectedAsset.website} rel="noopener noreferrer">
+              <span id="company-site">{selectedAsset.website}</span>
+            </a>
+          </h3>
           <Button onClick={() => this.props.modalClose()} color="red">Cancel</Button>
         </Modal.Header>
         <Modal.Content>
           <div className="flex-container">
             <AssetSummaryCard selectedAsset={selectedAsset} />
-            <TransactionCard  selectedAsset={selectedAsset} currentUser={currentUser} />
           </div>
+          <TransactionCard  selectedAsset={selectedAsset} currentUser={currentUser} />
         </Modal.Content>
       </Modal>
     )

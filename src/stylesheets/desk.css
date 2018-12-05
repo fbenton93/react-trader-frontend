@@ -2,19 +2,28 @@
   display: flex;
   width: 100%;
   height: 70%;
-  border: 1px solid red;
 }
 
 #selection-table {
   width: 80%;
   margin: 0 5%;
+  overflow-y: scroll;
   position: relative;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  border-top: 2px solid rgba(0,0,0,0.2);
+}
+
+.ui.table thead tr:first-child > th {
+     position: sticky !important;
+     top: 0;
+     z-index: 2;
 }
 
 #selection-table #search-bar {
   position: absolute;
   top: 3.5%;
   right: 2%;
+  z-index: 3;
 }
 
 #search-bar input {
@@ -74,4 +83,13 @@ tr:hover {
 #transaction-card {
   height: 100%;
   width: 69%;
+}
+
+#company-site {
+  padding-left: 10px;
+  font-size: 0.8em;
+}
+
+#errors {
+  color: red;
 }

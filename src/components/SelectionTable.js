@@ -36,19 +36,20 @@ class SelectionTable extends Component {
   render() {
     return (
       <div id="selection-table">
-        <SearchBar searchValue={this.state.searchTerm} setSearchTerm={this.setSearchTerm} />
         <Table compact={true} selectable={true} >
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>
                 Selector: {this.props.letter}
+                <SearchBar
+                  searchValue={this.state.searchTerm}
+                  setSearchTerm={this.setSearchTerm}
+                />
               </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body onClick={this.handleClick}>
-            <div className="scrolling">
               {this.renderRows()}
-            </div>
           </Table.Body>
         </Table>
       </div>
