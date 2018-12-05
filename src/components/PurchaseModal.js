@@ -10,7 +10,7 @@ import TransactionCard from './TransactionCard';
 
 class PurchaseModal extends Component {
   render() {
-    const { selectedAsset } = this.props;
+    const { selectedAsset, currentUser } = this.props;
     return (
       <Modal open={this.props.modalOpen} size="large" >
         <Modal.Header>
@@ -19,8 +19,8 @@ class PurchaseModal extends Component {
         </Modal.Header>
         <Modal.Content>
           <div className="flex-container">
-            <AssetSummaryCard selectedAsset={selectedAsset}/>
-            <TransactionCard />
+            <AssetSummaryCard selectedAsset={selectedAsset} />
+            <TransactionCard  selectedAsset={selectedAsset} currentUser={currentUser} />
           </div>
         </Modal.Content>
       </Modal>
@@ -31,7 +31,8 @@ class PurchaseModal extends Component {
 function mapStateToProps(state) {
   return {
     modalOpen: state.modalOpen,
-    selectedAsset: state.selectedAsset
+    selectedAsset: state.selectedAsset,
+    currentUser: state.currentUser
    }
 }
 
