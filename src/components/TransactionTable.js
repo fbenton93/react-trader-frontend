@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
-import { Input, Table, Button, Confirm } from 'semantic-ui-react';
+import { Input, Table, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 
 class TransactionTable extends Component {
   state = {
-    units: null,
-    triggerConfirmation: false
+    units: 0,
+    confirmed: false
   }
 
   handleChange = (event) => {
     this.setState({ units: event.target.value })
   }
 
-  handleClick = () => {
-    this.setState({ triggerConfirmation: !this.state.triggerConfirmation })
-  }
-
-  executeTrade = () => {
+  handleClick = (e) => {
     if(this.validate().length === 0) {
-      // trigger trade
+      if(e.target.id === 'confirm') {
+        this.setState({ confirmed: true})
+      }
+      if(e.target.id === 'execute' && this.state.confirmed) {
+        console.log('Executed Trade')
+        this.props.triggerSuccess();
+      }
     }
   }
 
@@ -51,41 +53,41 @@ class TransactionTable extends Component {
     const time = new Date(selectedAsset.delayedPriceTime).toString();
     const balance = currentUser.user.balance - cost
 
-    return (
-      <div>
-        <Table>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Remaining Cash Balance:</Table.HeaderCell>
-              <Table.HeaderCell>Units:</Table.HeaderCell>
-              <Table.HeaderCell>Reserved Share Price:</Table.HeaderCell>
-              <Table.HeaderCell>As Of:</Table.HeaderCell>
-              <Table.HeaderCell>Transaction Cost:</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell>${balance}</Table.Cell>
-              <Table.Cell>
-                  <Input
-                  type="number"
-                  min={0}
-                  max={maxShares}
-                  value={this.state.units}
-                  onChange={this.handleChange}
-                  />
-              </Table.Cell>
-              <Table.Cell>${selectedAsset.delayedPrice}</Table.Cell>
-              <Table.Cell>{time}</Table.Cell>
-              <Table.Cell>${cost}</Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-        <Button onClick={this.handleClick}>Buy</Button>
-        <Confirm id="confirmation" open={this.state.triggerConfirmation}  onCancel={this.handleClick} onConfirm={this.executeTrade} />
-        {this.validate().length > 0 ? <ul id="errors">{this.validate()}</ul> : null }
-      </div>
-    )
+      return (
+        <div>
+          <Table>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Remaining Cash Balance:</Table.HeaderCell>
+                <Table.HeaderCell>Units:</Table.HeaderCell>
+                <Table.HeaderCell>Reserved Share Price:</Table.HeaderCell>
+                <Table.HeaderCell>As Of:</Table.HeaderCell>
+                <Table.HeaderCell>Transaction Cost:</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell>${balance}</Table.Cell>
+                <Table.Cell>
+                    <Input
+                    type="number"
+                    min={0}
+                    max={maxShares}
+                    value={this.state.units}
+                    onChange={this.handleChange}
+                    />
+                </Table.Cell>
+                <Table.Cell>${selectedAsset.delayedPrice}</Table.Cell>
+                <Table.Cell>{time}</Table.Cell>
+                <Table.Cell>${cost}</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+          <Button color="blue" id="confirm" onClick={this.handleClick}>Confirm</Button>
+          <Button color="green" id="execute" onClick={this.handleClick} disabled={!this.state.confirmed}>Purchase</Button>
+          {this.validate().length > 0 ? <ul id="errors">{this.validate()}</ul> : null }
+        </div>
+      )
   }
 }
 

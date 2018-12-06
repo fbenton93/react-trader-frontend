@@ -7,12 +7,44 @@ import AssetSummaryCard from './AssetSummaryCard';
 import TransactionTable from './TransactionTable';
 import LiveDataTable from './LiveDataTable';
 import ChartComponent from '../stockchart';
+import SuccessContent from './SuccessContent';
 
 
 
 class PurchaseModal extends Component {
-  render() {
+  state = { submitted: false }
+
+
+  triggerSuccess = () => {
+    this.setState({
+      submitted: true
+    })
+  }
+
+  renderModalContent = () => {
     const { selectedAsset, currentUser } = this.props;
+    if(this.state.submitted) {
+      return (<SuccessContent msg={`Submitted. New Balance: $${currentUser.user.balance}`} />)
+    } else {
+      return (
+        <>
+        <div className="flex-container">
+          <AssetSummaryCard selectedAsset={selectedAsset} />
+          <ChartComponent symbol={selectedAsset.symbol} />
+        </div>
+        <LiveDataTable symbol={selectedAsset.symbol} />
+        <TransactionTable
+          selectedAsset={selectedAsset}
+          currentUser={currentUser}
+          triggerSuccess={this.triggerSuccess}
+        />
+        </>
+      )
+    }
+  }
+
+  render() {
+    const { selectedAsset } = this.props;
     return (
       <Modal open={this.props.modalOpen} size="large" id="purchase-modal">
         <Modal.Header>
@@ -27,12 +59,7 @@ class PurchaseModal extends Component {
           </div>
         </Modal.Header>
         <Modal.Content>
-          <div className="flex-container">
-            <AssetSummaryCard selectedAsset={selectedAsset} />
-            <ChartComponent symbol={selectedAsset.symbol} />
-          </div>
-          <LiveDataTable symbol={selectedAsset.symbol} />
-          <TransactionTable  selectedAsset={selectedAsset} currentUser={currentUser} />
+          {this.renderModalContent()}
         </Modal.Content>
       </Modal>
     )

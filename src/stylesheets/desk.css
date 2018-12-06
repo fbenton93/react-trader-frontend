@@ -140,4 +140,9 @@ tr:hover {
 
 
 
-/* CONFIRMATION MODAL */
+/* SUCCESS MODAL */
+
+#success {
+  width: 50%;
+  margin: 25%;
+}
