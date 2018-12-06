@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Input, Table, Button } from 'semantic-ui-react';
+import { Input, Table, Button, Confirm } from 'semantic-ui-react';
 import _ from 'lodash';
 
-class TransactionCard extends Component {
+class TransactionTable extends Component {
   state = {
-    units: 0
+    units: null,
+    triggerConfirmation: false
   }
 
   handleChange = (event) => {
@@ -12,7 +13,13 @@ class TransactionCard extends Component {
   }
 
   handleClick = () => {
+    this.setState({ triggerConfirmation: !this.state.triggerConfirmation })
+  }
 
+  executeTrade = () => {
+    if(this.validate().length === 0) {
+      // trigger trade
+    }
   }
 
   validate = () => {
@@ -29,15 +36,21 @@ class TransactionCard extends Component {
       errors.push(<li>The cost of this transaction exceeds your cash balance.</li>)
     }
 
+    if(this.state.units <= 0) {
+      errors.push(<li>Invalid quantity</li>)
+    }
+
     return errors;
   }
 
   render() {
+
     const { selectedAsset, currentUser } = this.props;
     const cost = _.round(this.state.units * selectedAsset.delayedPrice,2);
     const maxShares = Math.floor(currentUser.user.balance / selectedAsset.delayedPrice)
     const time = new Date(selectedAsset.delayedPriceTime).toString();
     const balance = currentUser.user.balance - cost
+
     return (
       <div>
         <Table>
@@ -45,7 +58,7 @@ class TransactionCard extends Component {
             <Table.Row>
               <Table.HeaderCell>Remaining Cash Balance:</Table.HeaderCell>
               <Table.HeaderCell>Units:</Table.HeaderCell>
-              <Table.HeaderCell>Share Price:</Table.HeaderCell>
+              <Table.HeaderCell>Reserved Share Price:</Table.HeaderCell>
               <Table.HeaderCell>As Of:</Table.HeaderCell>
               <Table.HeaderCell>Transaction Cost:</Table.HeaderCell>
             </Table.Row>
@@ -69,6 +82,7 @@ class TransactionCard extends Component {
           </Table.Body>
         </Table>
         <Button onClick={this.handleClick}>Buy</Button>
+        <Confirm id="confirmation" open={this.state.triggerConfirmation}  onCancel={this.handleClick} onConfirm={this.executeTrade} />
         {this.validate().length > 0 ? <ul id="errors">{this.validate()}</ul> : null }
       </div>
     )
@@ -76,4 +90,4 @@ class TransactionCard extends Component {
 }
 
 
-export default TransactionCard;
+export default TransactionTable;

@@ -47,6 +47,7 @@
   color: rgba(6,69,173,0.6);
   list-style-type: circle;
   text-decoration: underline;
+  padding-bottom: 2px;
 }
 
 #alpha-filter li:hover {
@@ -69,13 +70,47 @@ tr:hover {
 
 
 /* MODAL */
+.header {
+  min-height: 70px;
+}
 
-.modal {
+.modal-header {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+
+.modal-header h3 {
+  display: block;
+  position: absolute;
+  top: 3%;
+  left: 3%;
+}
+
+.modal-header button {
+  display: block;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
+
+
+
+
+#purchase-modal {
   min-height: 95vh;
 }
 
 .card div {
   margin: 20px;
+}
+
+.content {
+  height: 100%;
+  min-height: 600px;
+  max-height: 800px;
+  width: 100%;
+  overflow-y: auto;
 }
 
 #summary-card {
@@ -102,3 +137,7 @@ tr:hover {
 #errors {
   color: red;
 }
+
+
+
+/* CONFIRMATION MODAL */

@@ -13,7 +13,7 @@ class TradingDesk extends Component {
   render() {
     return (
       <div id="page-trading-desk" className="page">
-        <Segment color="blue"><h4>Select an Asset Below for Analysis and Purchase Options</h4></Segment>
+        <Segment className="segment-header" color="blue"><h4>Select an Asset Below for Analysis and Purchase Options</h4></Segment>
         <SelectionPane />
         <PurchaseModal />
       </div>
