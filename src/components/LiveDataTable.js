@@ -6,16 +6,15 @@ class LiveDataTable extends Component {
   state = { asset: {} }
 
   componentDidMount() {
-    const socket = require('socket.io-client')('https://ws-api.iextrading.com/1.0/tops')
-    socket.on('message', message => this.setState({asset: JSON.parse(message)}))
-    socket.on('connect', () => {
-      socket.emit('subscribe',`${this.props.symbol}`)
+    this.socket = require('socket.io-client')('https://ws-api.iextrading.com/1.0/tops')
+    this.socket.on('message', message => this.setState({asset: JSON.parse(message)}))
+    this.socket.on('connect', () => {
+      this.socket.emit('subscribe',`${this.props.symbol}`)
     })
   }
 
   componentWillUnmount() {
-    const socket = require('socket.io-client')('https://ws-api.iextrading.com/1.0/tops')
-    socket.on('disconnect',() => console.log('disconnected'))
+    this.socket.disconnect();
   }
 
 

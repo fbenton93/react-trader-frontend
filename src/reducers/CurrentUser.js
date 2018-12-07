@@ -4,6 +4,8 @@ export default function(state = { user: false },action) {
       return { user: action.payload }
     case 'LOG_OUT':
       return { user: false }
+    case 'PURCHASE_COMPLETED':
+      return { user: action.payload }
     default:
       return state;
   }

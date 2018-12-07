@@ -63,7 +63,7 @@ export function purchaseAsset(reqobj) {
   return dispatch => {
     return authorizedRequest.post('/assets',{ asset: {...reqobj}})
     .then(response => {
-      dispatch({ type: 'PURCHASE_COMPLETED', action: response.data })
+      dispatch({ type: 'PURCHASE_COMPLETED', payload: response.data.user })
     })
     .catch(r => {
       debugger

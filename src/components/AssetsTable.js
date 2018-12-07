@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import reduceAssets from '../helpers/reduceAssets';
+import _ from 'lodash';
+
 import { Table } from 'semantic-ui-react';
+import AssetsTableRow from './AssetsTableRow';
 
 class AssetsTable extends Component {
-
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: reduceAssets(this.props.data)
+    }
+  }
 
   renderRows = () => {
-
-
-    return (
-      <Table.Row negative>
-        <Table.Cell>FB</Table.Cell>
-        <Table.Cell>Facebook</Table.Cell>
-        <Table.Cell>200</Table.Cell>
-        <Table.Cell>$240</Table.Cell>
-        <Table.Cell>$47,000</Table.Cell>
-        <Table.Cell>-0.97%</Table.Cell>
-        <Table.Cell>04-11-2018</Table.Cell>
-      </Table.Row>
-    )
+    const assetObj = reduceAssets(this.props.data);
+    let rowArray = [];
+    for(let key in assetObj) {
+      rowArray.push(<AssetsTableRow key={key} asset={assetObj[key]} />)
+    }
+    return rowArray;
   }
 
 
@@ -33,10 +34,9 @@ class AssetsTable extends Component {
               <Table.HeaderCell>Ticker:</Table.HeaderCell>
               <Table.HeaderCell>Company:</Table.HeaderCell>
               <Table.HeaderCell># of Shares:</Table.HeaderCell>
-              <Table.HeaderCell>Purchased Price:</Table.HeaderCell>
+              <Table.HeaderCell>Cash Spent:</Table.HeaderCell>
               <Table.HeaderCell>Current Value:</Table.HeaderCell>
               <Table.HeaderCell>% Change:</Table.HeaderCell>
-              <Table.HeaderCell>Date of Purchase:</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
