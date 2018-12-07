@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Input, Table, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import { connect } from 'react-redux';
+import { purchaseAsset } from '../actions';
+
 class TransactionTable extends Component {
   state = {
     units: 0,
@@ -18,7 +21,14 @@ class TransactionTable extends Component {
         this.setState({ confirmed: true})
       }
       if(e.target.id === 'execute' && this.state.confirmed) {
-        console.log('Executed Trade')
+        const { selectedAsset, currentUser } = this.props;
+        this.props.purchaseAsset({
+          ticker: selectedAsset.symbol,
+          name: selectedAsset.companyName,
+          price: selectedAsset.delayedPrice,
+          quantity: this.state.units,
+          user_id: currentUser.user.id
+        })
         this.props.triggerSuccess();
       }
     }
@@ -92,4 +102,4 @@ class TransactionTable extends Component {
 }
 
 
-export default TransactionTable;
+export default connect(null,{ purchaseAsset })(TransactionTable);

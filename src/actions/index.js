@@ -58,3 +58,16 @@ export function fetchSelectedAsset(sym) {
 export function modalClose() {
   return { type: 'MODAL_CLOSE' }
 }
+
+export function purchaseAsset(reqobj) {
+  return dispatch => {
+    return authorizedRequest.post('/assets',{ asset: {...reqobj}})
+    .then(response => {
+      dispatch({ type: 'PURCHASE_COMPLETED', action: response.data })
+    })
+    .catch(r => {
+      debugger
+      dispatch({ type: `${r.response.status}`})
+    })
+  }
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Table } from 'semantic-ui-react';
 
@@ -47,4 +48,8 @@ class AssetsTable extends Component {
   }
 }
 
-export default AssetsTable;
+function mapStateToProps(state) {
+  return { data: state.currentUser.user.active_assets}
+}
+
+export default connect(mapStateToProps)(AssetsTable);
