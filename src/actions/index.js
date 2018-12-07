@@ -71,3 +71,8 @@ export function purchaseAsset(reqobj) {
     })
   }
 }
+
+export function updateGainLoss(asset) {
+  // assset is an object as { ticker: currentValue }
+  return { type: 'UPDATE_GAIN_LOSS', payload: asset }
+}

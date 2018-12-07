@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import reduceAssets from '../helpers/reduceAssets';
-import _ from 'lodash';
+
 
 import { Table } from 'semantic-ui-react';
 import AssetsTableRow from './AssetsTableRow';

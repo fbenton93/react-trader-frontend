@@ -5,6 +5,7 @@ import LoadingReducer from './Loading';
 import ErrorsReducer from './Errors';
 import ModalOpenReducer from './ModalOpen';
 import SelectedAssetReducer from './SelectedAsset';
+import GainLossReducer from './GainLoss';
 
 const reducers = combineReducers({
   authorized: AuthorizedReducer,
@@ -12,7 +13,8 @@ const reducers = combineReducers({
   loading: LoadingReducer,
   errors: ErrorsReducer,
   modalOpen: ModalOpenReducer,
-  selectedAsset: SelectedAssetReducer
+  selectedAsset: SelectedAssetReducer,
+  gainLoss: GainLossReducer
 })
 
 export default reducers;
