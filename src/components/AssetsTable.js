@@ -28,7 +28,7 @@ class AssetsTable extends Component {
   render() {
     return (
       <div id="assets">
-        <Table sortable={true}>
+        <Table>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Ticker:</Table.HeaderCell>
