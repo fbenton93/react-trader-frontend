@@ -1,3 +1,19 @@
+.navigators {
+  text-align: center;
+  width: 60%;
+}
+
+
+.navigator:hover {
+  cursor: pointer;
+  background-color: rgb(211,211,211) !important;
+}
+
+.navigator:active {
+  color: white;
+  background-color: rgb(211,211,211) !important;
+}
+
 .flex-container {
   display: flex;
   width: 100%;

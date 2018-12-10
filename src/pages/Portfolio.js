@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import reqAuth from '../HOCs/reqAuth';
-import AssetsTable from '../components/AssetsTable';
+import AssetsTable from '../components/TableAssets';
 
 import '../stylesheets/portfolio.css';
 import { Segment } from 'semantic-ui-react';
@@ -33,7 +33,7 @@ class Portfolio extends Component {
     return (
     <div id="page-portfolio" className="page">
       <div id="profile">
-        <Segment.Group horizontal>
+        <Segment.Group id="stats" horizontal>
           <Segment>User: {currentUser.username}</Segment>
           <Segment>Cash Balance: ${currentUser.balance}</Segment>
           <Segment inverted color={diff.color} tertiary>Account Growth: ${diff.difference}</Segment>

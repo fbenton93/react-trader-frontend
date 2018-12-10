@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import alphabet from '../helpers/alphabet.js';
-import SelectionTable from './SelectionTable';
+import SelectionTable from './TableSelection';
 
 class SelectionPane extends Component {
   state = {

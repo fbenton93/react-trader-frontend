@@ -4,8 +4,8 @@ import { modalClose } from '../actions';
 import { Modal, Button } from 'semantic-ui-react';
 
 import AssetSummaryCard from './AssetSummaryCard';
-import TransactionTable from './TransactionTable';
-import LiveDataTable from './LiveDataTable';
+import TransactionTable from './TableTransaction';
+import LiveDataTable from './TableLiveData';
 import ChartComponent from '../stockchart';
 import SuccessContent from './SuccessContent';
 
