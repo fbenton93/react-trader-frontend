@@ -1,7 +1,7 @@
 import React from 'react';
 import { Segment } from 'semantic-ui-react';
 import SelectionPane from './SelectionPane';
-import PurchaseModal from './PurchaseModal';
+import PurchaseModal from './ModalPurchase';
 
 const TabBuy = () => {
   return (
