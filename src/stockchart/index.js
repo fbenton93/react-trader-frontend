@@ -19,7 +19,6 @@ class ChartComponent extends React.Component {
 	}
 
 	render() {
-    console.log("rendering")
     if(this.state.data.length === 0) {
       return <div>Loading...</div>
     } else {

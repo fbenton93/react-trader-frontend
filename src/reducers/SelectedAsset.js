@@ -16,6 +16,8 @@ export default function(state = defaultState,action) {
       return action.payload;
     case 'ADD_QUOTE':
       return {...state,...action.payload}
+    case 'ADD_ASSET_ID':
+      return {...state, ...action.payload}
     default:
       return state;
   }

@@ -30,7 +30,6 @@ export function fetchCurrentUser() {
     .then(response => {
       dispatch({ type: 'LOADING_DONE' })
       dispatch({ type: 'LOG_IN', payload: response.data.user })
-      console.log('logged in')
     })
     .catch(r => {
       dispatch({ type: `${r.response.status}`})
@@ -40,7 +39,7 @@ export function fetchCurrentUser() {
 
 export function fetchSelectedAsset(sym) {
   return dispatch => {
-    dispatch({ type: 'LOADING' })
+    // dispatch({ type: 'LOADING' })
     return iex.get(`/stock/${sym}/company`)
     .then(response => {
       dispatch({ type: 'ASSET_SELECTED', payload: response.data })
@@ -49,30 +48,46 @@ export function fetchSelectedAsset(sym) {
       return iex.get(`/stock/${sym}/delayed-quote`)
       .then(response => {
         dispatch({ type: 'ADD_QUOTE', payload: response.data })
-        dispatch({ type: 'LOADING_DONE' })
+        // dispatch({ type: 'LOADING_DONE' })
       })
     })
   }
+}
+
+export const fetchExistingAsset = (sym,id) => async (dispatch) => {
+  await dispatch(fetchSelectedAsset(sym))
+  dispatch({ type: 'ADD_ASSET_ID', payload: {id} })
 }
 
 export function modalClose() {
   return { type: 'MODAL_CLOSE' }
 }
 
-export function purchaseAsset(reqobj) {
+export function modalOpen() {
+  return { type: 'MODAL_CLOSE'}
+}
+
+export function purchaseAsset(reqObj) {
   return dispatch => {
-    return authorizedRequest.post('/assets',{ asset: {...reqobj}})
+    return authorizedRequest.post('/assets',{ asset: {...reqObj}})
     .then(response => {
       dispatch({ type: 'PURCHASE_COMPLETED', payload: response.data.user })
     })
     .catch(r => {
-      debugger
       dispatch({ type: `${r.response.status}`})
     })
   }
 }
 
+export function sellAsset(reqObj) {
+  return dispatch => {
+    return authorizedRequest.post('/assets/sell', { asset: {...reqObj}})
+    .then(response => {
+      dispatch({ type: 'TEST', payload: response.data })
+    })
+  }
+}
+
 export function updateGainLoss(asset) {
-  // assset is an object as { ticker: currentValue }
   return { type: 'UPDATE_GAIN_LOSS', payload: asset }
 }

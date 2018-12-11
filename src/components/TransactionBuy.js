@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { purchaseAsset } from '../actions';
 
-class TransactionTable extends Component {
+class TransactionBuy extends Component {
   state = {
     units: 0,
     confirmed: false
@@ -102,4 +102,4 @@ class TransactionTable extends Component {
 }
 
 
-export default connect(null,{ purchaseAsset })(TransactionTable);
+export default connect(null,{ purchaseAsset })(TransactionBuy);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import reqAuth from '../HOCs/reqAuth';
 
-import TabBuy from '../components/TabBuy';
-import TabSell from '../components/TabSell';
+import BuyTab from './TabBuy';
+import SellTab from './TabSell';
 import { Segment, Divider } from 'semantic-ui-react';
 import '../stylesheets/desk.css';
 
@@ -25,7 +25,7 @@ class TradingDesk extends Component {
           <Segment id="sell" className="navigator" onClick={this.handleClick}>Sell</Segment>
         </Segment.Group>
         <Divider />
-        {this.state.tab === 'buy' ? <TabBuy /> : <TabSell />}
+        {this.state.tab === 'buy' ? <BuyTab /> : <SellTab />}
       </div>
     )
   }

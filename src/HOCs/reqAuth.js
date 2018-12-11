@@ -25,17 +25,7 @@ const reqAuth = (ChildComponent) => {
       } else {
         return <Redirect to="/login" />
       }
-      // console.log('were in the wrapper')
-      // if(this.props.loading && this.props.authorized && !this.props.currentUser.user) {
-      //   console.log("we're at the loader")
-      //   return <LoadingPage msg={"Loading Your Profile"} />
-      // } else if(!this.props.authorized) {
-      //   console.log("we're at the redirect")
-      //   return <Redirect to="/login" />
-      // } else if(this.props.currentUser.user){
-      //   console.log("returning the desired component")
-      //   return <ChildComponent />
-      // }
+
     }
   } // class end
 

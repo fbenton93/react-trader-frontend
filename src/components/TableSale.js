@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import reduceAssets from '../helpers/reduceAssets';
-import { fetchSelectedAsset } from '../actions';
+import { fetchExistingAsset } from '../actions';
+
+
 
 import { Table } from 'semantic-ui-react';
 import SaleTableRow from './SaleTableRow';
@@ -9,15 +10,18 @@ import SaleTableRow from './SaleTableRow';
 class SaleTable extends Component {
 
   handleClick = (event) => {
-    console.log(event.target)
+    const { ticker, id } = this.props.data.find((asset) => {
+      return asset.id == event.target.parentNode.id
+    })
+    console.log(ticker,id)
+    this.props.fetchExistingAsset(ticker, id)
   }
 
   renderRows = () => {
-    const assetObj = reduceAssets(this.props.data);
-    let rowArray = [];
-    for(let key in assetObj) {
-      rowArray.push(<SaleTableRow key={key} asset={assetObj[key]} />)
-    }
+    const rowArray = this.props.data.map((asset) => {
+      return <SaleTableRow key={asset.id} asset={asset} />
+    })
+
     return rowArray;
   }
 
@@ -30,6 +34,8 @@ class SaleTable extends Component {
               <Table.HeaderCell>Ticker:</Table.HeaderCell>
               <Table.HeaderCell>Company:</Table.HeaderCell>
               <Table.HeaderCell># of Shares:</Table.HeaderCell>
+              <Table.HeaderCell>Purchase Price:</Table.HeaderCell>
+              <Table.HeaderCell>Purchased At:</Table.HeaderCell>
               <Table.HeaderCell>Current Share Price:</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -48,4 +54,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(SaleTable);
+export default connect(mapStateToProps, { fetchExistingAsset })(SaleTable);

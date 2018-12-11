@@ -4,14 +4,15 @@ import { modalClose } from '../actions';
 import { Modal, Button } from 'semantic-ui-react';
 
 import AssetSummaryCard from './AssetSummaryCard';
-import TransactionTable from './TableTransaction';
+import TransactionBuy from './TransactionBuy';
+import TransactionSell from './TransactionSell';
 import LiveDataTable from './TableLiveData';
 import ChartComponent from '../stockchart';
 import SuccessContent from './SuccessContent';
 
 
 
-class PurchaseModal extends Component {
+class TransactionModal extends Component {
   state = { submitted: false }
 
 
@@ -33,12 +34,29 @@ class PurchaseModal extends Component {
           <ChartComponent symbol={selectedAsset.symbol} />
         </div>
         <LiveDataTable symbol={selectedAsset.symbol} />
-        <TransactionTable
+        </>
+      )
+    }
+  }
+
+  renderTransactionType = () => {
+    const { selectedAsset, currentUser, typeSell } = this.props;
+
+    if(typeSell) {
+      return (
+        <TransactionSell
           selectedAsset={selectedAsset}
           currentUser={currentUser}
           triggerSuccess={this.triggerSuccess}
         />
-        </>
+      )
+    } else {
+      return (
+        <TransactionBuy
+          selectedAsset={selectedAsset}
+          currentUser={currentUser}
+          triggerSuccess={this.triggerSuccess}
+        />
       )
     }
   }
@@ -60,6 +78,7 @@ class PurchaseModal extends Component {
         </Modal.Header>
         <Modal.Content>
           {this.renderModalContent()}
+          {this.renderTransactionType()}
         </Modal.Content>
       </Modal>
     )
@@ -74,4 +93,6 @@ function mapStateToProps(state) {
    }
 }
 
-export default connect(mapStateToProps, { modalClose })(PurchaseModal);
+
+
+export default connect(mapStateToProps, { modalClose })(TransactionModal);

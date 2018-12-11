@@ -18,10 +18,12 @@ class AssetsTableRow extends Component {
   render() {
     const { asset } = this.props;
     return (
-      <Table.Row>
+      <Table.Row id={asset.id}>
         <Table.Cell>{asset.ticker}</Table.Cell>
         <Table.Cell>{asset.name}</Table.Cell>
         <Table.Cell>{asset.quantity}</Table.Cell>
+        <Table.Cell>${asset.price}</Table.Cell>
+        <Table.Cell>{asset.created_at}</Table.Cell>
         <Table.Cell>${this.state.delayedPrice}</Table.Cell>
       </Table.Row>
     )
