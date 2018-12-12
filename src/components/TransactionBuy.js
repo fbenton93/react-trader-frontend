@@ -29,7 +29,6 @@ class TransactionBuy extends Component {
           quantity: this.state.units,
           user_id: currentUser.user.id
         })
-        this.props.triggerSuccess();
       }
     }
   }

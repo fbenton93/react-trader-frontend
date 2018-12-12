@@ -6,6 +6,8 @@ export default function(state = { user: false },action) {
       return { user: false }
     case 'PURCHASE_COMPLETED':
       return { user: action.payload }
+    case 'COMPLETED_SALE':
+      return { user: action.payload }
     default:
       return state;
   }

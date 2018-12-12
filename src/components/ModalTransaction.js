@@ -13,18 +13,11 @@ import SuccessContent from './SuccessContent';
 
 
 class TransactionModal extends Component {
-  state = { submitted: false }
 
-
-  triggerSuccess = () => {
-    this.setState({
-      submitted: true
-    })
-  }
 
   renderModalContent = () => {
     const { selectedAsset, currentUser } = this.props;
-    if(this.state.submitted) {
+    if(this.props.modalOpen.submitted) {
       return (<SuccessContent msg={`Submitted. New Balance: $${currentUser.user.balance}`} />)
     } else {
       return (
@@ -41,13 +34,13 @@ class TransactionModal extends Component {
 
   renderTransactionType = () => {
     const { selectedAsset, currentUser, typeSell } = this.props;
-
-    if(typeSell) {
+    if(this.props.modalOpen.submitted === true) {
+      return null
+    } else if(typeSell) {
       return (
         <TransactionSell
           selectedAsset={selectedAsset}
           currentUser={currentUser}
-          triggerSuccess={this.triggerSuccess}
         />
       )
     } else {
@@ -55,7 +48,6 @@ class TransactionModal extends Component {
         <TransactionBuy
           selectedAsset={selectedAsset}
           currentUser={currentUser}
-          triggerSuccess={this.triggerSuccess}
         />
       )
     }
@@ -64,7 +56,7 @@ class TransactionModal extends Component {
   render() {
     const { selectedAsset } = this.props;
     return (
-      <Modal open={this.props.modalOpen} size="large" id="purchase-modal">
+      <Modal open={this.props.modalOpen.modal} size="large" id="purchase-modal">
         <Modal.Header>
           <div className="modal-header">
             <h3>

@@ -81,9 +81,9 @@ export function purchaseAsset(reqObj) {
 
 export function sellAsset(reqObj) {
   return dispatch => {
-    return authorizedRequest.post('/assets/sell', { asset: {...reqObj}})
+    return authorizedRequest.patch(`/assets/${reqObj.id}`, { asset: {...reqObj}})
     .then(response => {
-      dispatch({ type: 'TEST', payload: response.data })
+      dispatch({ type: 'COMPLETED_SALE', payload: response.data.user })
     })
   }
 }

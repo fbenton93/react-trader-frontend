@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import reduceAssets from '../helpers/reduceAssets';
+import { connect } from 'react-redux';
+import { sellAsset } from '../actions';
 import { Table, Input, Button } from 'semantic-ui-react';
 
 
@@ -20,9 +20,11 @@ class TransactionSell extends Component {
         this.setState({ confirmed: true})
       }
       if(e.target.id === 'execute' && this.state.confirmed) {
-        const { selectedAsset } = this.props;
-        // new action to post a sale
-        this.props.triggerSuccess();
+        this.props.sellAsset({
+          id: this.props.selectedAsset.id,
+          quantity: this.state.units,
+          price: this.props.selectedAsset.delayedPrice
+        })
       }
     }
   }
@@ -87,4 +89,4 @@ class TransactionSell extends Component {
   }
 }
 
-export default TransactionSell;
+export default connect(null, { sellAsset })(TransactionSell);
