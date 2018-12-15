@@ -1,3 +1,4 @@
+import axios from 'axios';
 import backend from '../api/backend';
 import authorizedRequest from '../api/authorizedRequest';
 import iex from '../api/iex';
@@ -13,6 +14,7 @@ export function signup(creds,redirectCallback) {
         dispatch({ type: 'LOG_OUT'});
       }
       localStorage.setItem('jwt', response.data.jwt)
+      axios.defaults.headers.common['Authorization'] = response.data.jwt
       dispatch({ type: 'LOADING_DONE' })
       dispatch({ type: 'LOG_IN', payload: response.data.user })
       redirectCallback();
@@ -59,7 +61,7 @@ export function fetchCurrentUser() {
 
 export function fetchSelectedAsset(sym) {
   return dispatch => {
-    // dispatch({ type: 'LOADING' })
+    delete axios.defaults.headers.common["Authorization"]
     return iex.get(`/stock/${sym}/company`)
     .then(response => {
       dispatch({ type: 'ASSET_SELECTED', payload: response.data })
@@ -68,7 +70,7 @@ export function fetchSelectedAsset(sym) {
       return iex.get(`/stock/${sym}/delayed-quote`)
       .then(response => {
         dispatch({ type: 'ADD_QUOTE', payload: response.data })
-        // dispatch({ type: 'LOADING_DONE' })
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwt')
       })
     })
   }
