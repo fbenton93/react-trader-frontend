@@ -65,7 +65,7 @@ class TransactionModal extends Component {
                 <span id="company-site">{selectedAsset.website}</span>
               </a>
             </h3>
-            <Button onClick={() => this.props.modalClose()} color="red">Cancel</Button>
+            <Button onClick={() => this.props.modalClose()} color="red">Close</Button>
           </div>
         </Modal.Header>
         <Modal.Content>

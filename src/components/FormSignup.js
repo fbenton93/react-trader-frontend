@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { signup } from '../actions';
 import { Redirect } from 'react-router-dom';
 
-import { Input, Label, Form, Button, Divider } from 'semantic-ui-react';
+import { Input, Label, Form, Button } from 'semantic-ui-react';
 
 class SignupForm extends Component {
   state = {

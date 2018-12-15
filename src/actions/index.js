@@ -7,6 +7,7 @@ export function signup(creds,redirectCallback) {
     dispatch({ type: 'LOADING' })
     return backend.post('/users', {user: {...creds}})
     .then(response => {
+      console.log(response)
       if(localStorage.getItem('jwt')) {
         localStorage.removeItem('jwt')
         dispatch({ type: 'LOG_OUT'});

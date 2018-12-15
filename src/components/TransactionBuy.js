@@ -26,8 +26,7 @@ class TransactionBuy extends Component {
           ticker: selectedAsset.symbol,
           name: selectedAsset.companyName,
           price: selectedAsset.delayedPrice,
-          quantity: this.state.units,
-          user_id: currentUser.user.id
+          quantity: this.state.units
         })
       }
     }
