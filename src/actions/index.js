@@ -1,6 +1,5 @@
 import axios from 'axios';
 import backend from '../api/backend';
-import authorizedRequest from '../api/authorizedRequest';
 import iex from '../api/iex';
 
 export function signup(creds,redirectCallback) {
@@ -14,7 +13,7 @@ export function signup(creds,redirectCallback) {
         dispatch({ type: 'LOG_OUT'});
       }
       localStorage.setItem('jwt', response.data.jwt)
-      axios.defaults.headers.common['Authorization'] = response.data.jwt
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.jwt}`
       dispatch({ type: 'LOADING_DONE' })
       dispatch({ type: 'LOG_IN', payload: response.data.user })
       redirectCallback();
@@ -31,6 +30,7 @@ export function logIn(creds) {
     return backend.post('/login', { user: creds })
     .then(response => {
       localStorage.setItem('jwt',response.data.jwt)
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.jwt}`
       dispatch({ type: 'LOADING_DONE' })
       dispatch({ type: 'LOG_IN', payload: response.data.user })
     })
@@ -48,7 +48,7 @@ export function logOut() {
 export function fetchCurrentUser() {
   return dispatch => {
     dispatch({ type: 'LOADING'})
-    return authorizedRequest.get('/profile')
+    return backend.get('/profile')
     .then(response => {
       dispatch({ type: 'LOADING_DONE' })
       dispatch({ type: 'LOG_IN', payload: response.data.user })
@@ -70,7 +70,7 @@ export function fetchSelectedAsset(sym) {
       return iex.get(`/stock/${sym}/delayed-quote`)
       .then(response => {
         dispatch({ type: 'ADD_QUOTE', payload: response.data })
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwt')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`
       })
     })
   }
@@ -91,7 +91,7 @@ export function modalOpen() {
 
 export function purchaseAsset(reqObj) {
   return dispatch => {
-    return authorizedRequest.post('/assets',{ asset: {...reqObj}})
+    return backend.post('/assets',{ asset: {...reqObj}})
     .then(response => {
       dispatch({ type: 'PURCHASE_COMPLETED', payload: response.data.user })
     })
@@ -103,7 +103,7 @@ export function purchaseAsset(reqObj) {
 
 export function sellAsset(reqObj) {
   return dispatch => {
-    return authorizedRequest.patch(`/assets/${reqObj.id}`, { asset: {...reqObj}})
+    return backend.patch(`/assets/${reqObj.id}`, { asset: {...reqObj}})
     .then(response => {
       dispatch({ type: 'COMPLETED_SALE', payload: response.data.user })
     })
