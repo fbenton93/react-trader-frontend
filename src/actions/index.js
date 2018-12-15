@@ -2,7 +2,7 @@ import backend from '../api/backend';
 import authorizedRequest from '../api/authorizedRequest';
 import iex from '../api/iex';
 
-export function logIn(creds,historyCallback) {
+export function logIn(creds) {
   return dispatch => {
     dispatch({type: 'LOADING'})
     return backend.post('/login', { user: creds })
@@ -10,7 +10,6 @@ export function logIn(creds,historyCallback) {
       localStorage.setItem('jwt',response.data.jwt)
       dispatch({ type: 'LOADING_DONE' })
       dispatch({ type: 'LOG_IN', payload: response.data.user })
-      historyCallback();
     })
     .catch(r => {
       dispatch({ type: `${r.response.status}` })

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../stylesheets/login.css'
 
-import FormLogin from '../components/FormLogin';
+import LoginForm from '../components/FormLogin';
 
 class Login extends Component {
   state = { signup: false }
@@ -14,7 +14,7 @@ class Login extends Component {
     return (
       <div id="page-login" className="page">
         <div id="login-panel">
-          <FormLogin history={this.props.history} triggerFormSwitch={this.triggerFormSwitch} />
+          <LoginForm triggerFormSwitch={this.triggerFormSwitch} />
         </div>
       </div>
     )

@@ -5,6 +5,7 @@ import reqAuth from '../HOCs/reqAuth';
 import AssetsTable from '../components/TableAssets';
 
 import '../stylesheets/portfolio.css';
+import _ from 'lodash';
 import { Segment } from 'semantic-ui-react';
 
 
@@ -19,7 +20,7 @@ class Portfolio extends Component {
       for(const key in gainLoss) {
         agg += gainLoss[key]
       }
-      const difference = (agg + this.props.currentUser.balance) - 1000000
+      const difference = _.round(((agg + this.props.currentUser.balance) - 1000000),2)
       const color = Math.sign(difference) === 1 ? "green" : "red"
       return {difference, color}
     } else {
@@ -36,7 +37,7 @@ class Portfolio extends Component {
         <Segment.Group id="stats" horizontal>
           <Segment>User: {currentUser.username}</Segment>
           <Segment>Cash Balance: ${currentUser.balance}</Segment>
-          <Segment inverted color={diff.color} tertiary>Account Growth: ${diff.difference}</Segment>
+          <Segment inverted color={diff.color} tertiary>Account Growth ($): {diff.difference}</Segment>
         </Segment.Group>
       </div>
 

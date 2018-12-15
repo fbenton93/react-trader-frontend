@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import { logIn } from '../actions';
 
-class FormLogin extends Component {
+class LoginForm extends Component {
   state = {
     username: 'fbenton',
     password: 'password'
@@ -23,8 +23,7 @@ class FormLogin extends Component {
       this.props.logIn(
         { username: this.state.username,
           password: this.state.password
-        },
-        () => this.props.history.push('/portfolio')
+        }
       );
     } else {
       this.props.triggerFormSwitch();
@@ -74,4 +73,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps,{logIn})(FormLogin);
+export default connect(mapStateToProps,{logIn})(LoginForm);
