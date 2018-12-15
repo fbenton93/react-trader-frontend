@@ -35,6 +35,33 @@
   color: rgba(255,255,255,0.6)
 }
 
+#signup-panel {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 55%;
+  width: 40%;
+  margin: 0.1% 0.2%;
+  background-color: rgba(0,0,0,0.7);
+  border: 1px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
+  border-radius: 2px;
+  position: absolute;
+  text-align: center;
+  color: rgba(255,255,255,0.6)
+}
+
+.input {
+  width: 80%;
+}
+
+#signup-panel form {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  padding: 2%;
+}
+
 #login-panel h2 {
   margin-top: 5px;
 }

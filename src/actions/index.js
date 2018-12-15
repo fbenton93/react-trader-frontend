@@ -2,6 +2,26 @@ import backend from '../api/backend';
 import authorizedRequest from '../api/authorizedRequest';
 import iex from '../api/iex';
 
+export function signup(creds,redirectCallback) {
+  return dispatch => {
+    dispatch({ type: 'LOADING' })
+    return backend.post('/users', {user: {...creds}})
+    .then(response => {
+      if(localStorage.getItem('jwt')) {
+        localStorage.removeItem('jwt')
+        dispatch({ type: 'LOG_OUT'});
+      }
+      localStorage.setItem('jwt', response.data.jwt)
+      dispatch({ type: 'LOADING_DONE' })
+      dispatch({ type: 'LOG_IN', payload: response.data.user })
+      redirectCallback();
+    })
+    .catch(r => {
+      dispatch({ type: `${r.response.status}`})
+    })
+  }
+}
+
 export function logIn(creds) {
   return dispatch => {
     dispatch({type: 'LOADING'})
