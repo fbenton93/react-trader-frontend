@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 
 
-import iex from '../api/iex';
-
-
 class AssetsTableRow extends Component {
   state = { delayedPrice: 'Loading...'}
 
   componentDidMount() {
-    iex.get(`/stock/${this.props.asset.ticker}/delayed-quote`)
-    .then(response => {
-      const { delayedPrice } = response.data
-      this.setState({ delayedPrice })
-    })
+    fetch(`https://api.iextrading.com/1.0/stock/${this.props.asset.ticker}/delayed-quote`)
+    .then(response => response.json())
+    .then(({ delayedPrice }) => this.setState({ delayedPrice }))
   }
 
   render() {

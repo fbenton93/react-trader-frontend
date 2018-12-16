@@ -19,12 +19,14 @@ class TradingDesk extends Component {
   render() {
     return (
       <div id="page-trading-desk" className="page">
-        <Segment.Group horizontal className="navigators">
-          <Segment>Select a Transaction: </Segment>
-          <Segment id="buy" className="navigator" onClick={this.handleClick}>Buy</Segment>
-          <Segment id="sell" className="navigator" onClick={this.handleClick}>Sell</Segment>
-        </Segment.Group>
-        <Divider />
+        <div id="desk-header">
+          <Segment.Group horizontal className="navigators">
+            <Segment>Select a Transaction: </Segment>
+            <Segment id="buy" className="navigator" onClick={this.handleClick}>Buy</Segment>
+            <Segment id="sell" className="navigator" onClick={this.handleClick}>Sell</Segment>
+          </Segment.Group>
+          <Divider />
+        </div>
         {this.state.tab === 'buy' ? <BuyTab /> : <SellTab />}
       </div>
     )

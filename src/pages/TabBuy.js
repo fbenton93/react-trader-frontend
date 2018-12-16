@@ -6,7 +6,9 @@ import TransactionModal from '../components/ModalTransaction';
 const TabBuy = () => {
   return (
     <>
-    <Segment className="segment-header" color="blue"><h4>Select an Asset Below for Analysis and Purchase Options</h4></Segment>
+    <Segment className="segment-header" color="blue">
+      <h4>Assets Must Be Searched by Alphabet. Narrow Your Search Using The Searchbar.</h4>
+    </Segment>
     <SelectionPane />
     <TransactionModal typeSell={false} />
     </>
