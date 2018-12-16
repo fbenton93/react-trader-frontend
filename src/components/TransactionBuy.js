@@ -21,7 +21,7 @@ class TransactionBuy extends Component {
         this.setState({ confirmed: true})
       }
       if(e.target.id === 'execute' && this.state.confirmed) {
-        const { selectedAsset, currentUser } = this.props;
+        const { selectedAsset } = this.props;
         this.props.purchaseAsset({
           ticker: selectedAsset.symbol,
           name: selectedAsset.companyName,
