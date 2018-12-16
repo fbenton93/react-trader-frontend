@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 
+
 import iex from '../api/iex';
 
 

@@ -4,6 +4,7 @@ import { updateGainLoss } from '../actions';
 
 import { Table } from 'semantic-ui-react';
 import _ from 'lodash';
+import marketsAreOpen from '../helpers/marketsAreOpen';
 import differenceAsAPercent from '../helpers/differenceAsAPercent';
 
 class AssetsTableRow extends Component {
@@ -27,10 +28,8 @@ class AssetsTableRow extends Component {
   }
 
   fetchLastPrice = (sym) => {
-    const day = (new Date()).getUTCDay();
-    const timeHr = (new Date()).getUTCHours();
-    const timeMin = (new Date()).getMinutes();
-    if(timeHr >= 21 || timeHr < 14 || (timeHr === 14 && timeMin < 30) || day <= 1) {
+
+    if(marketsAreOpen()) {
       return fetch(`https://api.iextrading.com/1.0//stock/${sym}/delayed-quote`)
       .then(r => r.json())
       .then(data => this.setState({ livePrice: data.delayedPrice }))

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { Input, Table, Button } from 'semantic-ui-react';
 import _ from 'lodash';
-
-import { connect } from 'react-redux';
+import marketsAreOpen from '../helpers/marketsAreOpen';
 import { purchaseAsset } from '../actions';
 
 class TransactionBuy extends Component {
@@ -34,11 +35,9 @@ class TransactionBuy extends Component {
 
   validate = () => {
     let errors = [];
-    const timeHr = (new Date()).getUTCHours();
-    const timeMin = (new Date()).getMinutes();
-    // can I standardize EST?
-    if(timeHr >= 21 || timeHr < 14 || (timeHr === 14 && timeMin < 30)) {
-      errors.push(<li>React Trader operates during American market hours. Come back between 9:30AM and 5PM</li>)
+
+    if(marketsAreOpen()) {
+      errors.push(<li>React Trader operates during American market hours. Come back between 9:30AM and 5PM on weekdays.</li>)
     }
 
     const { selectedAsset, currentUser } = this.props;

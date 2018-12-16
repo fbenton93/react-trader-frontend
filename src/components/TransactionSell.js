@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import marketsAreOpen from '../helpers/marketsAreOpen';
 import { sellAsset } from '../actions';
 import { Table, Input, Button } from 'semantic-ui-react';
 
@@ -31,11 +33,9 @@ class TransactionSell extends Component {
 
   validate = () => {
     let errors = [];
-    const timeHr = (new Date()).getUTCHours();
-    const timeMin = (new Date()).getMinutes();
     const { currentUser, selectedAsset } = this.props;
     const existingAsset = currentUser.user.active_assets.find((asset) => asset.id === selectedAsset.id)
-    if(timeHr >= 21 || timeHr < 14 || (timeHr === 14 && timeMin < 30)) {
+    if(marketsAreOpen()) {
       errors.push(<li>React Trader operates during American market hours. Come back between 9:30AM and 4PM</li>)
     }
     if(this.state.units <= 0 || this.state.units > existingAsset.quantity) {
