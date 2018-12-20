@@ -94,6 +94,7 @@
 .flex-wrapper #actions {
   width: 50%;
   height: 100%;
+  margin-top: 4%;
 }
 
 #credentials:first-child {

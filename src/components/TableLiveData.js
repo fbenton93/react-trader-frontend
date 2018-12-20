@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 
+import marketsAreOpen from '../helpers/marketsAreOpen';
+
 
 class LiveDataTable extends Component {
   state = { asset: {} }
@@ -21,6 +23,8 @@ class LiveDataTable extends Component {
   render() {
     const { asset } = this.state;
     const lastSaleTime = (new Date(asset.lastSaleTime)).toString();
+    const open = marketsAreOpen();
+
     return (
       <Table>
         <Table.Header>
@@ -33,10 +37,10 @@ class LiveDataTable extends Component {
         </Table.Header>
         <Table.Body>
           <Table.Row>
-            <Table.Cell>{asset.securityType}</Table.Cell>
-            <Table.Cell>{asset.lastSalePrice}</Table.Cell>
-            <Table.Cell>{asset.lastSaleSize}</Table.Cell>
-            <Table.Cell>{lastSaleTime}</Table.Cell>
+            <Table.Cell>{!!open ? asset.securityType : "Markets Closed"}</Table.Cell>
+            <Table.Cell>{!!open ? asset.lastSalePrice : "Markets Closed"}</Table.Cell>
+            <Table.Cell>{!!open ? asset.lastSaleSize : "Markets Closed"}</Table.Cell>
+            <Table.Cell>{!!open ? lastSaleTime : "Markets Closed"}</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>

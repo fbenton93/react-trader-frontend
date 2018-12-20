@@ -36,7 +36,7 @@ class TransactionBuy extends Component {
   validate = () => {
     let errors = [];
 
-    if(marketsAreOpen()) {
+    if(!marketsAreOpen()) {
       errors.push(<li>React Trader operates during American market hours. Come back between 9:30AM and 5PM on weekdays.</li>)
     }
 

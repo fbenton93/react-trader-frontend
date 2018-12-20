@@ -35,7 +35,7 @@ class TransactionSell extends Component {
     let errors = [];
     const { currentUser, selectedAsset } = this.props;
     const existingAsset = currentUser.user.active_assets.find((asset) => asset.id === selectedAsset.id)
-    if(marketsAreOpen()) {
+    if(!marketsAreOpen()) {
       errors.push(<li>React Trader operates during American market hours. Come back between 9:30AM and 4PM</li>)
     }
     if(this.state.units <= 0 || this.state.units > existingAsset.quantity) {

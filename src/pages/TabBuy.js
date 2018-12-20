@@ -7,7 +7,7 @@ const TabBuy = () => {
   return (
     <>
     <Segment className="segment-header" color="blue">
-      <h4>Assets Must Be Searched by Alphabet. Narrow Your Search Using The Searchbar.</h4>
+      <h4>Assets must be searched by alphabet. Narrow your search using the searchbar.</h4>
     </Segment>
     <SelectionPane />
     <TransactionModal typeSell={false} />

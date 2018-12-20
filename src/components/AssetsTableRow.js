@@ -28,8 +28,8 @@ class AssetsTableRow extends Component {
   }
 
   fetchLastPrice = (sym) => {
-
-    if(marketsAreOpen()) {
+    console.log(marketsAreOpen())
+    if(!marketsAreOpen()) {
       return fetch(`https://api.iextrading.com/1.0//stock/${sym}/delayed-quote`)
       .then(r => r.json())
       .then(data => this.setState({ livePrice: data.delayedPrice }))

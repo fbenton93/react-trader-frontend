@@ -4,10 +4,10 @@ const marketsAreOpen = () => {
   const timeMin = (new Date()).getMinutes();
   // this could include a list of holidays, too
 
-  if(timeHr >= 21 || timeHr < 14 || (timeHr === 14 && timeMin < 30) || day <= 1) {
-    return true;
-  } else {
+  if(timeHr >= 21 || timeHr < 14 || (timeHr === 14 && timeMin < 30) || day === 0 || day === 6) {
     return false;
+  } else {
+    return true;
   }
 }
 
