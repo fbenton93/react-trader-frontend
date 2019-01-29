@@ -48,12 +48,12 @@ class SignupForm extends Component {
 
             <Form.Field>
             <Label pointing="below">Password:</Label>
-            <Input name="password" value={this.state.password} onChange={this.handleChange} />
+            <Input name="password" value={this.state.password} onChange={this.handleChange} type="password" />
             </Form.Field>
 
             <Form.Field>
             <Label pointing="below">Confirm Password:</Label>
-            <Input name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} />
+            <Input name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} type="password" />
             </Form.Field>
 
             <Button color="green">Submit</Button>
